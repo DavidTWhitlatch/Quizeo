@@ -17,7 +17,7 @@ the two main users of Quizeo will be career professionals looking for a platform
 
 ## ERD
 
-![quiz_erd](https://user-images.githubusercontent.com/26421398/45004273-54201780-afb9-11e8-88db-30b4f49a2862.png)
+![untitled diagram](https://user-images.githubusercontent.com/26421398/45041498-72782880-b036-11e8-8a75-bb662b0f5f55.png)
 
 # Wireframes
 
