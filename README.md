@@ -34,3 +34,5 @@ the two main users of Quizeo will be career professionals looking for a platform
 # Plans for execution
 
 I plan to use a react video player package similar to https://video-react.js.org/ for displaying the videos and then use modals to display the quizes. For storing videos, I found several solutions for uploading files. For reference, packages i found work with coudinary, react-dropzone, amazons S3 or firebase. 
+https://cloudinary.com/documentation/react_image_and_video_upload
+https://react-dropzone.netlify.com/
