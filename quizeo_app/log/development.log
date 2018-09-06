@@ -2548,3 +2548,2099 @@ Processing by UsersController#index as */*
 Completed 200 OK in 24ms (Views: 12.0ms | ActiveRecord: 16.7ms)
 
 
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 14:03:56 -0400
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 2.2ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `async_prepare'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `block in prepare_statement'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:664:in `prepare_statement'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:609:in `exec_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:592:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:469:in `select_prepared'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:55:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:101:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (50.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:9
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:4
+  [1m[35m (313.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quizeo_app_development"[0m
+  ↳ bin/rails:4
+  [1m[35m (303.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quizeo_app_test"[0m
+  ↳ bin/rails:4
+  [1m[35m (785.4ms)[0m  [1m[35mCREATE DATABASE "quizeo_app_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:4
+  [1m[35m (716.3ms)[0m  [1m[35mCREATE DATABASE "quizeo_app_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:4
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:4
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5432428623531680505)[0m
+  ↳ bin/rails:4
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Migrating to CreateUsers (20180904182348)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (23.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182348_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182348"]]
+  ↳ bin/rails:4
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateVideos (20180904182354)
+  [1m[35m (6.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (18.2ms)[0m  [1m[35mCREATE TABLE "videos" ("id" bigserial primary key, "name" character varying, "url" character varying, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182354_create_videos.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182354"]]
+  ↳ bin/rails:4
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateQuizzes (20180904182402)
+  [1m[35m (12.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" bigserial primary key, "question" character varying, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182402_create_quizzes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (2.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182402"]]
+  ↳ bin/rails:4
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateAnswers (20180904182410)
+  [1m[35m (6.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (17.2ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "option" character varying, "is_correct" boolean, "quiz_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182410_create_answers.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182410"]]
+  ↳ bin/rails:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateStats (20180904182426)
+  [1m[35m (6.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE TABLE "stats" ("id" bigserial primary key, "user_id" integer, "answer_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182426_create_stats.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182426"]]
+  ↳ bin/rails:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreatePlaylists (20180904182436)
+  [1m[35m (8.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (16.4ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" bigserial primary key, "name" character varying, "video_id" integer, "quiz_id" integer, "user_id" integer, "is_last" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182436_create_playlists.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182436"]]
+  ↳ bin/rails:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Create (2.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-09-05 18:28:19.125103"], ["updated_at", "2018-09-05 18:28:19.125103"]]
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(5432428623531680505)[0m
+  ↳ bin/rails:4
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:4
+  [1m[35m (310.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quizeo_app_development"[0m
+  ↳ bin/rails:4
+  [1m[35m (305.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quizeo_app_test"[0m
+  ↳ bin/rails:4
+  [1m[35m (770.3ms)[0m  [1m[35mCREATE DATABASE "quizeo_app_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:4
+  [1m[35m (638.3ms)[0m  [1m[35mCREATE DATABASE "quizeo_app_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:4
+  [1m[35m (14.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:4
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:4
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5432428623531680505)[0m
+  ↳ bin/rails:4
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Migrating to CreateUsers (20180904182348)
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182348_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182348"]]
+  ↳ bin/rails:4
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateVideos (20180904182354)
+  [1m[35m (6.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (20.8ms)[0m  [1m[35mCREATE TABLE "videos" ("id" bigserial primary key, "name" character varying, "url" character varying, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182354_create_videos.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182354"]]
+  ↳ bin/rails:4
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateQuizzes (20180904182402)
+  [1m[35m (6.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (24.0ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" bigserial primary key, "question" character varying, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182402_create_quizzes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182402"]]
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateAnswers (20180904182410)
+  [1m[35m (12.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (14.8ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "option" character varying, "is_correct" boolean, "quiz_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182410_create_answers.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (2.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182410"]]
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateStats (20180904182426)
+  [1m[35m (6.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (14.9ms)[0m  [1m[35mCREATE TABLE "stats" ("id" bigserial primary key, "user_id" integer, "answer_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182426_create_stats.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182426"]]
+  ↳ bin/rails:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreatePlaylists (20180904182436)
+  [1m[35m (12.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (15.4ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" bigserial primary key, "name" character varying, "video_id" integer, "quiz_id" integer, "user_id" integer, "is_last" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180904182436_create_playlists.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180904182436"]]
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Load (2.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:4
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-09-05 18:28:43.568284"], ["updated_at", "2018-09-05 18:28:43.568284"]]
+  ↳ bin/rails:4
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(5432428623531680505)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "zane"], ["password_digest", "$2a$10$mcxOGfD/yMA4jJ3uEXXFSOyCZmBVI4r7OINAnMntPWLmmx0GUwJDK"], ["created_at", "2018-09-05 18:28:44.128371"], ["updated_at", "2018-09-05 18:28:44.128371"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 14:30:09 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (5.2.1) lib/action_controller/metal/request_forgery_protection.rb:211:in `handle_unverified_request'
+actionpack (5.2.1) lib/action_controller/metal/request_forgery_protection.rb:243:in `handle_unverified_request'
+actionpack (5.2.1) lib/action_controller/metal/request_forgery_protection.rb:238:in `verify_authenticity_token'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 14:30:24 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"email"=>"zane@gmail.com", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"zane@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (9.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "zane@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 13.6ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LI...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:196:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 14:40:49 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as */*
+  Parameters: {"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 2.1ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `async_prepare'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `block in prepare_statement'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:664:in `prepare_statement'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:609:in `exec_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:592:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:469:in `select_prepared'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:55:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:101:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 15:43:18 -0400
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 5.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `async_prepare'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `block in prepare_statement'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:664:in `prepare_statement'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:609:in `exec_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:592:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:469:in `select_prepared'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:55:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:101:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 15:44:01 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.8ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 15:44:08 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 16:59:08 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 5.4ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 16:59:09 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 1.3ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 16:59:14 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.9ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 17:02:07 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 7.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 17:02:50 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 17:02:53 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (9.0ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "zane"], ["password_digest", "$2a$10$MW.ptAoVFOQ861aZcg4w3ugxsowEarVc6jt.MOv2w4gFZfosDOtiC"], ["created_at", "2018-09-05 21:47:17.459018"], ["updated_at", "2018-09-05 21:47:17.459018"]]
+  [1m[35m (9.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "zane"], ["password_digest", "$2a$10$o8RX15K1eQ/ikm1WCFadseKBAL8xWsKKaG2lKszfewY.p/ytVVvpe"], ["created_at", "2018-09-05 21:54:45.859843"], ["updated_at", "2018-09-05 21:54:45.859843"]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "zane"], ["password_digest", "$2a$10$cj.WEmhExQ.jWaj2.rmYrO9/6zKBYg0IaZzYAx0LewAXsw3OKxfr."], ["created_at", "2018-09-05 21:55:51.445286"], ["updated_at", "2018-09-05 21:55:51.445286"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mVideo Create (25.6ms)[0m  [1m[32mINSERT INTO "videos" ("name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Mephisto First Impressions"], ["url", "https://www.youtube.com/watch?v=X1FbSc1-YE4"], ["user_id", 4], ["created_at", "2018-09-05 21:59:28.997710"], ["updated_at", "2018-09-05 21:59:28.997710"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 19:11:22 -0400
+  [1m[35m (7.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 2.3ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `async_prepare'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `block in prepare_statement'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:664:in `prepare_statement'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:609:in `exec_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:592:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:469:in `select_prepared'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:55:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:101:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 19:11:52 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 2.1ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `async_prepare'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:669:in `block in prepare_statement'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:664:in `prepare_statement'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:609:in `exec_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:592:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:469:in `select_prepared'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:55:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:101:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 23:48:38 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (19.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 19.3ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-05 23:48:42 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 08:52:40 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Unpermitted parameter: :username
+  [1m[36mUser Load (26.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 26.1ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL...
+                                             ^
+: SELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `async_exec'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:603:in `block (2 levels) in exec_no_cache'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (5.2.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (5.2.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:602:in `block in exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:579:in `block (2 levels) in log'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:578:in `block in log'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract_adapter.rb:569:in `log'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:601:in `exec_no_cache'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:590:in `execute_and_clear'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:81:in `exec_query'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:465:in `select'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/database_statements.rb:57:in `select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `block in select_all'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:122:in `block in cache_sql'
+/usr/local/Cellar/ruby/2.5.1/lib/ruby/2.5.0/monitor.rb:226:in `mon_synchronize'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:108:in `cache_sql'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/query_cache.rb:99:in `select_all'
+activerecord (5.2.1) lib/active_record/querying.rb:41:in `find_by_sql'
+activerecord (5.2.1) lib/active_record/relation.rb:554:in `block in exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:578:in `skip_query_cache_if_necessary'
+activerecord (5.2.1) lib/active_record/relation.rb:541:in `exec_queries'
+activerecord (5.2.1) lib/active_record/relation.rb:414:in `load'
+activerecord (5.2.1) lib/active_record/relation.rb:200:in `records'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:500:in `find_take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:103:in `take'
+activerecord (5.2.1) lib/active_record/relation/finder_methods.rb:81:in `find_by'
+activerecord (5.2.1) lib/active_record/querying.rb:9:in `find_by'
+activerecord (5.2.1) lib/active_record/core.rb:191:in `find_by'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:31:in `entity'
+knock (2.1.1) app/controllers/knock/auth_token_controller.rb:13:in `authenticate'
+activesupport (5.2.1) lib/active_support/callbacks.rb:426:in `block in make_lambda'
+activesupport (5.2.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.2.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `each'
+activesupport (5.2.1) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (5.2.1) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.2.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.1) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.1) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.1) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.1) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.1) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.1) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.1) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.1) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.1) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.1) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.1) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+activerecord (5.2.1) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 08:56:02 -0400
+  [1m[35m (7.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/models/user.rb:4
+Completed 404 Not Found in 21ms (ActiveRecord: 4.3ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 08:56:34 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/models/user.rb:4
+Completed 404 Not Found in 2ms (ActiveRecord: 1.0ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 10:19:47 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/models/user.rb:4
+Completed 404 Not Found in 3ms (ActiveRecord: 2.2ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 10:21:05 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "zane"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:4
+Unpermitted parameter: :username
+Completed 201 Created in 187ms (Views: 0.7ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 10:28:00 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "zane"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:4
+Unpermitted parameter: :username
+Completed 201 Created in 84ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-09-06 10:28:20 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"username"=>"zane", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "zane"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:4
+Unpermitted parameter: :username
+Completed 201 Created in 87ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+

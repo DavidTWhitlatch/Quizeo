@@ -13,3 +13,13 @@ user.username = 'zane'
 user.password = '12345'
 user.password_confirmation = '12345'
 user.save
+
+video = Video.new
+video.name = "Mephisto First Impressions"
+video.url = "https://www.youtube.com/watch?v=X1FbSc1-YE4"
+video.user_id = user
+video.save
+
+playlist = Playlist.new
+playlist.name = "HOTS guides"
+playlist.video_id = 

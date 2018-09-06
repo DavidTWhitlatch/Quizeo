@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
-  def self.from_token_request(request)
-    username = request.params['auth'] && request.params['auth']['username']
-    find_by username: username
-  end
-
   # GET /users
   def index
     @users = User.all

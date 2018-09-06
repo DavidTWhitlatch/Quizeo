@@ -1,20 +1,32 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import './App.css';
+import { loginUser } from './services/api';
+import Header from './components/Header';
+import Login from './components/Login';
+import PlaylistSearch from './components/PlaylistSearch';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password:'',
       isLoggedIn: null,
+      loginModal: false,
+      registerModal: false
     };
-    this.logout = this.logout.bind(this)
-    this.login = this.login.bind(this)
-    this.isLoggedIn = this.isLoggedIn.bind(this)
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
+    this.isLoggedIn = this.isLoggedIn.bind(this)
+    this.logout = this.logout.bind(this)
+  }
+
+  toggleModal(modal) {
+    this.setState({
+      [modal]: !this.state.loginModal
+    })
   }
 
   isLoggedIn() {
@@ -27,32 +39,24 @@ class App extends Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
   logout() {
     localStorage.removeItem("jwt")
     this.setState({
-     isLoggedIn: false,
+      isLoggedIn: false,
     })
   }
 
-  login() {
-    const url = `${BASE_URL}/user_token`;
-    const body = {"auth": {"username": this.state.username, "password": this.state.password} }
-    const init = { method: 'POST',
-                   headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                   mode: 'cors',
-                   body: JSON.stringify(body),
-                   }
-    fetch(url, init)
-    .then(res => res.json())
-    .then(res => localStorage.setItem("jwt", res.jwt))
-    .then(() => this.setState({
-      isLoggedIn: true,
-    }))
-    .catch(err => console.log(err))
+  handleLoginSubmit( username, password ) {
+    loginUser({ "username": username, "password": password })
+      .then(res => localStorage.setItem("jwt", res.jwt))
+      .then(() => this.setState({
+        isLoggedIn: true,
+      }))
+      .catch(err => console.log(err))
   }
 
   componentDidMount() {
@@ -61,36 +65,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <form>
-          <label htmlFor="username">username: </label>
-          <br />
-          <input
-            name="username"
-            onChange={this.handleChange}
-            value={this.state.username}
-            type="text"
+      <Router>
+        <div>
+          <Header 
+          isLoggedIn={this.state.isLoggedIn}
+          toggleModal={this.toggleModal}
           />
-          <br /><br />
-          <label htmlFor="password">Password:</label>
-          <br />
-          <input
-            name="password"
-            onChange={this.handleChange}
-            value={this.state.value}
-            type="password"
-          />
-          </form>
-          <br />
+          <Route exact={true} path="/" component={PlaylistSearch}/>
+          <div className={ this.state.loginModal?"modal is-active":"modal" }>
+            <div className="modal-background"></div>
+            <div className="modal-content">
+              <Login
+                handleLoginSubmit={this.handleLoginSubmit}
+                toggleModal={this.toggleModal}
+              />
+            </div>
+          </div>
 
-          <button onClick={this.login}>
-          Login
-          </button>
-
-          <button onClick={this.logout}>
-          Logout
-          </button>
-      </div>
+        </div>
+      </Router>
     );
   }
 }

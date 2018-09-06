@@ -23,6 +23,99 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+.login {
+  width: 400px;
+  margin: 100px auto;
+  font-size: 16px;
+}
+
+/* Reset top and bottom margins from certain elements */
+
+.login-header, .login p {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: black;
+}
+
+/* The triangle form is achieved by a CSS hack */
+
+.login-triangle {
+  width: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border: 12px solid transparent;
+}
+
+.login-header {
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.login-container {
+  background: #f8f8f8;
+  padding: 12px;
+  text-align: center;
+}
+
+/* Every row inside .login-container is defined with p tags */
+
+.login p {
+  padding: 12px;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.login input[type="email"], .login input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+/* Text fields' focus effect */
+
+.login input[type="email"]:focus, .login input[type="password"]:focus {
+  border-color: #888;
+}
+
+.login button {
+  background: #ebebeb
+}
+
+.card-content {
+  background: #ebebeb
+}
+
+#cancel-button{
+  background: rgba(10, 10, 10, 0.3)
+}
+
+#cancel-button:focus, #cancel-button:hover{
+  background: rgba(10, 10, 10, 0.4)
+}
+
+#cancel-button:active{
+  background: rgba(10, 10, 10, 0.5)
 }
