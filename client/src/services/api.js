@@ -20,14 +20,14 @@ export function loginUser(userInfo) {
 export function registerUser(userInfo) {
   const opts = {
     method: 'POST',
-    body: JSON.stringify(userInfo),
+    body: JSON.stringify({ "user": userInfo } ),
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
-  // notice the corret url path
-  return fetch(`${BASE_URL}/auth/register`, opts)
+
+  return fetch(`${BASE_URL}/users`, opts)
     .then(resp => resp.json())
     .catch(err => {
       throw Error(err);

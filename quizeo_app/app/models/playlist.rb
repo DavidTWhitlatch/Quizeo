@@ -1,5 +1,5 @@
 class Playlist < ApplicationRecord
-  belongs_to :video
-  belongs_to :quiz
   belongs_to :user
+  has_many :videos
+  has_many :quizzes
 end

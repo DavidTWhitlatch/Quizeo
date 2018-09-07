@@ -26,7 +26,7 @@ class Login extends Component {
       <div className="modal-card login">
         <header className="modal-card-head login-header">
           <h2 className="modal-card-title">Log in</h2>
-          <button className="delete is-large" id="cancel-button" onClick={(() => this.props.toggleModal("loginModal"))}></button>
+          <button className="delete is-large" id="cancel-button" onClick={this.props.toggleLoginModal}></button>
         </header>
         <section className="modal-card-body">
           <form className="login-container" onSubmit={(e) => {
@@ -45,7 +45,7 @@ class Login extends Component {
               onChange={this.handleChange} /></p>
             <p><button className="button" type="submit" value="login" onClick={(e) => {
               e.preventDefault();
-              this.props.toggleModal("loginModal");
+              this.props.toggleLoginModal();
               this.props.handleLoginSubmit(
                 this.state.username,
                 this.state.password
@@ -54,7 +54,8 @@ class Login extends Component {
             } >Log In</button></p>
             <p><button className="button" type="submit" value="Register" onClick={(e) => {
               e.preventDefault();
-
+              this.props.toggleLoginModal();
+              this.props.toggleRegisterModal();
             }
             } >Register</button></p>
           </form>

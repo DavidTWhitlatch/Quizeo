@@ -3,7 +3,8 @@ class CreateVideos < ActiveRecord::Migration[5.2]
     create_table :videos do |t|
       t.string :name
       t.string :url
-      t.integer :user_id
+      t.integer :playlist_id
+      t.integer :order
 
       t.timestamps
     end

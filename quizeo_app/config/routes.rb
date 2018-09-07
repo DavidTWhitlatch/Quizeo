@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :users
   resources :playlists do
     resources :videos
+    resources :quizzes
   end
-  resources :stats
+  resources :videos
+  resources :quizzes do
+    resources :answers
+  end
 end

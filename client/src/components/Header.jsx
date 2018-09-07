@@ -14,19 +14,19 @@ function Header(props) {
               props.isLoggedIn
                 ?
                 (
-                  <div className="navbar-item has-dropdown is-hoverable"><a className="navbar-link">Account&nbsp;<FontAwesomeIcon icon="user" /></a>
+                  <div className="navbar-item has-dropdown is-hoverable"><a className="navbar-link">{props.currentUser}&nbsp;<FontAwesomeIcon icon="user" /></a>
                     <div className="navbar-dropdown is-right">
                       <a className="navbar-item">Stats</a>
                       <a className="navbar-item">My Lessons</a>
                       <a className="navbar-item">Create a Lesson</a>
                       <hr className="navbar-divider" />
-                      <a className="navbar-item">Logout</a>
+                      <a className="navbar-item" onClick={props.logout}>Logout</a>
                     </div>
                   </div>
                 )
                 :
                 (
-                  <span className="navbar-item" onClick={() => props.toggleModal("loginModal")}>
+                  <span className="navbar-item" onClick={() => props.toggleLoginModal()}>
                     <a className="button is-light">
                       <span>Login</span>
                     </a>

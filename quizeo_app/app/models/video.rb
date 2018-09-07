@@ -1,4 +1,3 @@
 class Video < ApplicationRecord
-  has_many :playlists
-  belongs_to :user
+  belongs_to :playlist
 end

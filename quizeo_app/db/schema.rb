@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_182436) do
+ActiveRecord::Schema.define(version: 2018_09_06_234340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,13 @@ ActiveRecord::Schema.define(version: 2018_09_04_182436) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "answers_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.string "name"
-    t.integer "video_id"
-    t.integer "quiz_id"
     t.integer "user_id"
     t.boolean "is_last"
     t.datetime "created_at", null: false
@@ -35,14 +38,8 @@ ActiveRecord::Schema.define(version: 2018_09_04_182436) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "question"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "stats", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "answer_id"
+    t.integer "playlist_id"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,7 +54,8 @@ ActiveRecord::Schema.define(version: 2018_09_04_182436) do
   create_table "videos", force: :cascade do |t|
     t.string "name"
     t.string "url"
-    t.integer "user_id"
+    t.integer "playlist_id"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

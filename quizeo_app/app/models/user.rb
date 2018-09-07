@@ -5,8 +5,8 @@ class User < ApplicationRecord
   end
 
   has_secure_password
-  has_many :stats
   has_many :videos
   has_many :playlists
   has_many :quizzes
+  has_and_belongs_to_many :answers
 end
