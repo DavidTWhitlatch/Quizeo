@@ -16,9 +16,22 @@ Answer.destroy_all
 
 @zane = User.create(username: 'zane', password: '12345')
 
-@hots = @zane.playlists.create(name: 'HOTS guides')
+@hots = @zane.playlists.create(name: 'HOTS guides1')
+@hots2 = @zane.playlists.create(name: 'HOTS guides2')
+@hots3 = @zane.playlists.create(name: 'HOTS guides3')
+@hots4 = @zane.playlists.create(name: 'HOTS guides4')
+@hots5 = @zane.playlists.create(name: 'HOTS guides5')
+@hots6 = @zane.playlists.create(name: 'HOTS guides6')
+@hots7 = @zane.playlists.create(name: 'HOTS guides7')
+@hots8 = @zane.playlists.create(name: 'HOTS guides8')
+@hots9 = @zane.playlists.create(name: 'HOTS guides9')
+@hots10 = @zane.playlists.create(name: 'HOTS guides10')
+@hots11 = @zane.playlists.create(name: 'HOTS guides11')
+
 
 @mephisto = @hots.videos.create(name: 'Mephisto Spotlight', url: 'https://www.youtube.com/watch?v=m0nt7SJKfwo', order: 1)
+
+@mephisto2 = @hots2.videos.create(name: 'Mephisto Spotlight', url: 'https://www.youtube.com/watch?v=m0nt7SJKfwo', order: 1)
 
 @game = @hots.quizzes.create(question: 'What game is Mephisto from?', order: 2)
 

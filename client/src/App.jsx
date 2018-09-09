@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import decode from 'jwt-decode';
-import { loginUser, registerUser } from './services/api';
+
+import { loginUser, registerUser, playlistIndex, playlistShow } from './services/api';
 import PlaylistSearch from './components/PlaylistSearch';
+import ShowPlaylist from './components/ShowPlaylist';
 import Register from './components/Register';
 import Header from './components/Header';
 import Login from './components/Login';
 import './App.css';
-
 
 class App extends Component {
   constructor(props) {
@@ -17,15 +17,73 @@ class App extends Component {
       isLoggedIn: null,
       loginModal: false,
       registerModal: false,
-      currentUser: null
+      currentUser: null,
+      playlists: [],
+      currentPlaylist: [],
+      playlistOrder: [],
+      startvideo: null
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.toggleLoginModal = this.toggleLoginModal.bind(this)
+    this.GetOnePlaylist = this.GetOnePlaylist.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
+    this.getPlaylists = this.getPlaylists.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.isLoggedIn = this.isLoggedIn.bind(this)
     this.logout = this.logout.bind(this)
+  }
+
+  componentDidMount() {
+    this.isLoggedIn();
+    this.getPlaylists();
+  }
+
+  getPlaylists() {
+    playlistIndex()
+      .then((data) => {
+        this.setState({
+          playlists: data.playlists
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  GetOnePlaylist(id) {
+    playlistShow(id)
+      .then((data) => {
+        this.setState({
+          currentPlaylist: data.playlist[0]
+        });
+        return data.playlist[0]
+      })
+      .then((resp) => {
+        this.setState({
+          playlistOrder: this.setOrder(resp)
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  setOrder(playlist) {
+    this.setState
+    return playlist.videos.concat(playlist.quizzes).sort((first, second) => first.order - second.order);
+  }
+
+  // Functions to handle all of the user login, registers and authentication
+
+  isLoggedIn() {
+    const res = !!(localStorage.getItem("jwt"));
+    this.setState({
+      isLoggedIn: res,
+    })
+    if (res) {
+      let token = decode(localStorage.getItem("jwt"))
+      this.setState({
+        currentUser: token.username
+      })
+    }
+    return res;
   }
 
   handleRegister(username, password) {
@@ -33,6 +91,7 @@ class App extends Component {
       .then(() => this.handleLoginSubmit(username, password))
       .catch(err => console.log(err))
   }
+
 
   handleLoginSubmit(username, password) {
     loginUser({ "username": username, "password": password })
@@ -43,7 +102,7 @@ class App extends Component {
       .then(() => {
         let token = decode(localStorage.getItem("jwt"))
         this.setState({
-          currentUser: decode(token).sub
+          currentUser: token.username
         })
       })
       .catch(err => console.log(err))
@@ -61,19 +120,6 @@ class App extends Component {
     })
   }
 
-  isLoggedIn() {
-    const res = !!(localStorage.getItem("jwt"));
-    this.setState({
-      isLoggedIn: res,
-    })
-    // if (res) {
-      // let token = decode(localStorage.getItem("jwt"))
-    //   this.setState({
-    //     currentUser: decode(token.username)
-    //   })
-    // }
-    return res;
-  }
 
   handleChange(e) {
     this.setState({
@@ -88,11 +134,7 @@ class App extends Component {
     })
   }
 
-
-
-  componentDidMount() {
-    this.isLoggedIn();
-  }
+  // End of user functions. now rendering view
 
   render() {
     return (
@@ -104,27 +146,35 @@ class App extends Component {
             toggleLoginModal={this.toggleLoginModal}
             logout={this.logout}
           />
-          <Route exact={true} path="/" component={PlaylistSearch} />
-          <div className={this.state.loginModal ? "modal is-active" : "modal"}>
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <Login
-                toggleRegisterModal={this.toggleRegisterModal}
-                handleLoginSubmit={this.handleLoginSubmit}
-                toggleLoginModal={this.toggleLoginModal}
-              />
-            </div>
-          </div>
-          <div className={this.state.registerModal ? "modal is-active" : "modal"}>
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <Register
-                toggleRegisterModal={this.toggleRegisterModal}
-                handleRegister={this.handleRegister}
-              />
-            </div>
-          </div>
-
+          <Login
+            toggleRegisterModal={this.toggleRegisterModal}
+            handleLoginSubmit={this.handleLoginSubmit}
+            toggleLoginModal={this.toggleLoginModal}
+            loginModal={this.state.loginModal}
+          />
+          <Register
+            toggleRegisterModal={this.toggleRegisterModal}
+            handleRegister={this.handleRegister}
+            registerModal={this.state.registerModal}
+          />
+          <Route
+            exact={true}
+            path="/"
+            render={(props) => <PlaylistSearch
+              {...props}
+              playlists={this.state.playlists}
+              toggleLoginModal={this.toggleLoginModal}
+              GetOnePlaylist={this.GetOnePlaylist}
+            />}
+          />
+          <Route
+            path="/playlists/:playlist_id"
+            render={((props) => <ShowPlaylist
+              {...props}
+              currentPlaylist={this.state.currentPlaylist}
+              playlistOrder={this.state.playlistOrder}
+            />)}
+          />
         </div>
       </Router>
     );

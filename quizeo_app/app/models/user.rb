@@ -4,6 +4,11 @@ class User < ApplicationRecord
     find_by username: username
   end
 
+  def to_token_payload
+    # Returns the payload as a hash
+    { username: username }
+  end
+  
   has_secure_password
   has_many :videos
   has_many :playlists

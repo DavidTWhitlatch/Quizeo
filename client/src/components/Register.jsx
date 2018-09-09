@@ -21,34 +21,39 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="modal-card login">
-        <header className="modal-card-head login-header">
-          <h2 className="modal-card-title">Register</h2>
-          <button className="delete is-large" id="cancel-button" onClick={this.props.toggleRegisterModal}></button>
-        </header>
-        <section className="modal-card-body">
-          <form className="login-container" onSubmit={(e) => {
-            e.preventDefault();
-          }
-          } >
-            <p><input type="text"
-              name="username"
-              placeholder="Username"
-              value={this.state.username}
-              onChange={this.handleChange} /></p>
-            <p><input type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange} /></p>
-            <p><button className="button" type="submit" value="Register" onClick={(e) => {
-              e.preventDefault();
-              this.props.toggleRegisterModal();
-              this.props.handleRegister(this.state.username, this.state.password);
-            }
-            } >Register</button></p>
-          </form>
-        </section>
+      <div className={this.props.registerModal ? "modal is-active" : "modal"}>
+        <div className="modal-background"></div>
+        <div className="modal-content">
+          <div className="modal-card login">
+            <header className="modal-card-head login-header">
+              <h2 className="modal-card-title">Register</h2>
+              <button className="delete is-large" id="cancel-button" onClick={this.props.toggleRegisterModal}></button>
+            </header>
+            <section className="modal-card-body">
+              <form className="login-container" onSubmit={(e) => {
+                e.preventDefault();
+              }
+              } >
+                <p><input type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChange={this.handleChange} /></p>
+                <p><input type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handleChange} /></p>
+                <p><button className="button" type="submit" value="Register" onClick={(e) => {
+                  e.preventDefault();
+                  this.props.toggleRegisterModal();
+                  this.props.handleRegister(this.state.username, this.state.password);
+                }
+                } >Register</button></p>
+              </form>
+            </section>
+          </div>
+        </div>
       </div>
     )
   };

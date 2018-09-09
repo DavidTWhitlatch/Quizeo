@@ -108,14 +108,30 @@
   background: #ebebeb
 }
 
-#cancel-button{
+#cancel-button {
   background: rgba(10, 10, 10, 0.3)
 }
 
-#cancel-button:focus, #cancel-button:hover{
+#cancel-button:focus, #cancel-button:hover {
   background: rgba(10, 10, 10, 0.4)
 }
 
-#cancel-button:active{
+#cancel-button:active {
   background: rgba(10, 10, 10, 0.5)
+}
+
+.scrollable {
+  max-height: 69vh;
+  overflow-y: auto;
+}
+
+.list-playlists {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+  margin: 10px;
+}
+
+.line-break {
+  grid-column: 1 / -1;
 }
