@@ -10,4 +10,10 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.where(id: params[:id])
     render json: { playlist: @playlist }, include: :videos
   end
+
+  def destroy
+    @playlist = Playlist.find(params[:id])
+    @playlist.destroy
+    render json: { message: "Destroyed playlist #{params[:id]}" }
+  end
 end

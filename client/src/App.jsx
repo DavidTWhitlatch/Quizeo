@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import decode from 'jwt-decode';
 
-import { loginUser, registerUser, playlistIndex, playlistShow, quizzesIndex, userAnswer } from './services/api';
+import { loginUser, registerUser, playlistIndex, playlistShow, quizzesIndex, userAnswer, destroyPlaylist } from './services/api';
 import PlaylistSearch from './components/PlaylistSearch';
+import UserPlaylists from './components/UserPlaylists';
 import ShowPlaylist from './components/ShowPlaylist';
 import Register from './components/Register';
 import Header from './components/Header';
@@ -20,14 +21,13 @@ class App extends Component {
       currentUser: null,
       playlists: [],
       currentPlaylist: null,
-      // playlistOrder: [],
-      // startvideo: null
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.toggleLoginModal = this.toggleLoginModal.bind(this)
     this.getOnePlaylist = this.getOnePlaylist.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
+    this.deletePlaylist = this.deletePlaylist.bind(this)
     this.userResponse = this.userResponse.bind(this)
     this.getPlaylists = this.getPlaylists.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -48,6 +48,12 @@ class App extends Component {
         })
       })
       .catch(err => console.log(err))
+  }
+
+  deletePlaylist(id) {
+    destroyPlaylist(id)
+    .then(data => this.getPlaylists())
+    .catch(err => console.log(err))
   }
 
   getOnePlaylist(id) {
@@ -190,7 +196,16 @@ class App extends Component {
               {...props}
               currentPlaylist={this.state.currentPlaylist}
               userResponse={this.userResponse}
-            // playlistOrder={this.state.playlistOrder}
+            />)}
+          />
+          <Route
+            path='/user/playlists'
+            render={((props) => <UserPlaylists
+              {...props}
+              playlists={this.state.playlists}
+              getOnePlaylist={this.getOnePlaylist}
+              currentUser={this.state.currentUser}
+              deletePlaylist={this.deletePlaylist}
             />)}
           />
         </div>

@@ -72,3 +72,14 @@ export function userAnswer(userid, id) {
       throw Error(err);
     });
 }
+
+export function destroyPlaylist(id) {
+  const opts = {
+    method: 'DELETE'
+  }
+  
+  return fetch(`${BASE_URL}/playlists/${id}`, opts)
+  .catch(err => {
+    throw Error(err);
+  });
+}
