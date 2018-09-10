@@ -2,6 +2,9 @@
 Quizeo is a video teaching tool with the main goal to provide a more interactive experience for both the viewers and content creators. 
 Instructors can upload videos and add quizes/surveys during their video for viewers to test their comprehension of the material. This data is then available to the video creator through their profile page. The quiz results will help viewers know how well they were able to learn the subject and they will help the instructors know how effective their lesson was.
 
+# App Deployment
+http://the-quizeo.surge.sh/
+
 # User Stories
 
 the two main users of Quizeo will be career professionals looking for a platform to create lessons and users who are simply interested in learning or strengthening their grasp of a subject.
@@ -33,6 +36,6 @@ the two main users of Quizeo will be career professionals looking for a platform
 
 # Plans for execution
 
-I plan to use a react video player package similar to https://video-react.js.org/ for displaying the videos and then use modals to display the quizes. For storing videos, I found several solutions for uploading files. For reference, packages i found work with coudinary, react-dropzone, amazons S3 or firebase. 
-https://cloudinary.com/documentation/react_image_and_video_upload <br>
-https://react-dropzone.netlify.com/
+I used https://www.npmjs.com/package/react-player for displaying video links. This also had built in functionality for callback functions when a video finishes.
+
+I used https://reacttraining.com/react-router/ to handle switching views without reloading the browser DOM.
