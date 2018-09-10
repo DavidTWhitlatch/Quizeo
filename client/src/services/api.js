@@ -35,7 +35,7 @@ export function registerUser(userInfo) {
 
 export function playlistIndex() {
   return fetch(`${BASE_URL}/playlists`)
-  .then(resp => resp.json())
+    .then(resp => resp.json())
     .catch(err => {
       throw Error(err);
     });
@@ -43,7 +43,31 @@ export function playlistIndex() {
 
 export function playlistShow(id) {
   return fetch(`${BASE_URL}/playlists/${id}`)
-  .then(resp => resp.json())
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function quizzesIndex() {
+  return fetch(`${BASE_URL}/quizzes`)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function userAnswer(userid, id) {
+  const opts = {
+    method: 'POST',
+    body: JSON.stringify({ "data": { "attributes": { "id": id } } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return fetch(`${BASE_URL}/users/${userid}/answers/`, opts)
+    .then(resp => resp.json())
     .catch(err => {
       throw Error(err);
     });

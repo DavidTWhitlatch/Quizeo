@@ -1,4 +1,4 @@
 class Quiz < ApplicationRecord
   has_many :answers
-  belongs_to :playlist
+  belongs_to :video
 end

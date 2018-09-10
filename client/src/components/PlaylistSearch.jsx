@@ -61,7 +61,7 @@ class PlaylistSearch extends Component {
                 <div
                   className="card"
                   onClick={() => {
-                    this.props.GetOnePlaylist(playlist.id);
+                    this.props.getOnePlaylist(playlist.id);
                     this.changeRoute(playlist.id);
                   }}
                   key={playlist.id}

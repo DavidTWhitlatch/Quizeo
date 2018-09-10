@@ -6,9 +6,10 @@ class User < ApplicationRecord
 
   def to_token_payload
     # Returns the payload as a hash
-    { username: username }
+    user = User.find_by username: username
+    { username: user.username, id: user.id }
   end
-  
+
   has_secure_password
   has_many :videos
   has_many :playlists

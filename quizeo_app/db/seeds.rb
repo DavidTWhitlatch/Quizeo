@@ -28,12 +28,12 @@ Answer.destroy_all
 @hots10 = @zane.playlists.create(name: 'HOTS guides10')
 @hots11 = @zane.playlists.create(name: 'HOTS guides11')
 
-
 @mephisto = @hots.videos.create(name: 'Mephisto Spotlight', url: 'https://www.youtube.com/watch?v=m0nt7SJKfwo', order: 1)
+@whitemane = @hots.videos.create(name: 'Whitemane Spotlight', url: 'https://www.youtube.com/watch?v=HdpqWokf3_w', order: 2)
 
 @mephisto2 = @hots2.videos.create(name: 'Mephisto Spotlight', url: 'https://www.youtube.com/watch?v=m0nt7SJKfwo', order: 1)
 
-@game = @hots.quizzes.create(question: 'What game is Mephisto from?', order: 2)
+@game = @mephisto.quizzes.create(question: 'What game is Mephisto from?')
 
 @overwatch = @game.answers.create(option: 'Overwatch', is_correct: false)
 @diablo = @game.answers.create(option: 'Diablo', is_correct: true)

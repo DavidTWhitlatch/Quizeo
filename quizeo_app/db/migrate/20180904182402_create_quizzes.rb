@@ -2,8 +2,7 @@ class CreateQuizzes < ActiveRecord::Migration[5.2]
   def change
     create_table :quizzes do |t|
       t.string :question
-      t.integer :playlist_id
-      t.integer :order
+      t.integer :video_id
 
       t.timestamps
     end

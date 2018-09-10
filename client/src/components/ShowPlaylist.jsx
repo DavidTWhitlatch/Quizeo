@@ -1,110 +1,94 @@
 import React, { Component } from 'react';
+import ReactPlayer from 'react-player'
+import { Redirect } from 'react-router'
 
 class ShowPLaylist extends Component {
-  contructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       url: null,
       playing: true,
-      volume: 0.8,
-      muted: false,
-      played: 0,
-      loaded: 0,
-      duration: 0
+      controls: true,
+      currentVideo: 0,
+      showQuiz: false,
     };
+    this.onEnded = this.onEnded.bind(this)
   }
-  playPause = () => {
-    this.setState({ playing: !this.state.playing })
+
+  onEnded() {
+    this.props.currentPlaylist.videos[this.state.currentVideo].quizzes.length ?
+      this.toggleQuiz()
+      : this.setState({
+        currentVideo: (this.state.currentVideo + 1),
+        playing: true
+      })
   }
-  setVolume = e => {
-    this.setState({ volume: parseFloat(e.target.value) })
+
+  toggleQuiz() {
+    this.setState({
+      showQuiz: !this.state.showQuiz
+    })
   }
-  toggleMuted = () => {
-    this.setState({ muted: !this.state.muted })
+
+  showAnswers() {
+    return this.props.currentPlaylist.videos[this.state.currentVideo].quizzes[0].answers.map(answer => (
+      <div
+        className="answers"
+        onClick={(() => {
+          this.props.userResponse(answer.id);
+          this.toggleQuiz();
+          this.setState({
+            currentVideo: (this.state.currentVideo + 1),
+            playing: true
+          });
+        })}
+      >{answer.option}</div>
+    ))
   }
-  onPlay = () => {
-    console.log('onPlay')
-    this.setState({ playing: true })
-  }
-  onPause = () => {
-    console.log('onPause')
-    this.setState({ playing: false })
-  }
-  onSeekMouseDown = e => {
-    this.setState({ seeking: true })
-  }
-  onSeekChange = e => {
-    this.setState({ played: parseFloat(e.target.value) })
-  }
-  onSeekMouseUp = e => {
-    this.setState({ seeking: false })
-    this.player.seekTo(parseFloat(e.target.value))
-  }
-  onProgress = state => {
-    console.log('onProgress', state)
-    // We only want to update time slider if we are not currently seeking
-    if (!this.state.seeking) {
-      this.setState(state)
+
+  playlistLoop() {
+    while (this.state.currentVideo < this.props.currentPlaylist.videos.length) {
+      if (this.state.showQuiz) {
+        return (
+          <div className="quiz">
+            <div className="question">{this.props.currentPlaylist.videos[this.state.currentVideo].quizzes[0].question}</div>
+            {this.showAnswers()}
+          </div>
+        )
+      }
+      else {
+        return (
+          <div className="video-player">
+            <ReactPlayer
+              className="video"
+              url={this.props.currentPlaylist.videos[this.state.currentVideo].url}
+              playing
+              controls
+              onEnded={this.onEnded}
+              width='100%'
+              height='90vh'
+            />
+          </div>
+        )
+      }
+    }
+    if (this.state.currentVideo >= this.props.currentPlaylist.videos.length) {
+      return (<Redirect to='/' />)
     }
   }
 
-
-  // ------------------------------WIP------------------------------
-  onEnded = () => {
-    this.state.hasQuiz ?
-    showQuiz :
-    this.setState({ 
-      url: nextVideo,
-      playing: true,
-      played: 0,
-      loaded: 0,})
-  }
-  // ---------------------------------------------------------------
-
-  onDuration = (duration) => {
-    this.setState({ duration })
-  }
-  onClickFullscreen = () => {
-    screenfull.request(findDOMNode(this.player))
-  }
-  renderLoadButton = (url, label) => {
-    return (
-      <button onClick={() => this.load(url)}>
-        {label}
-      </button>
-    )
-  }
-  ref = player => {
-    this.player = player
-  }
-
   render() {
-    const { url, playing, volume, muted, loop, played, loaded, duration, playbackRate } = this.state
     return (
       <div>
-        {props.playlistOrder.length ? props.playlistOrder[0].url : ""}
-        <ReactPlayer
-          ref={this.ref}
-          className='react-player'
-          width='100%'
-          height='100%'
-          url={url}
-          playing={playing}
-          volume={volume}
-          muted={muted}
-          onReady={() => console.log('onReady')}
-          onStart={() => console.log('onStart')}
-          onPlay={this.onPlay}
-          onPause={this.onPause}
-          onBuffer={() => console.log('onBuffer')}
-          onSeek={e => console.log('onSeek', e)}
-          onEnded={this.onEnded}
-          onError={e => console.log('onError', e)}
-          onProgress={this.onProgress}
-          onDuration={this.onDuration}
-        />
+        {this.props.currentPlaylist ?
+          this.playlistLoop()
+          : (<div className="video">Loading...</div>)
+        }
       </div>
+
+
     )
+
   }
 }
 

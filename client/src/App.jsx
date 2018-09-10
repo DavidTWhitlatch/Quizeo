@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import decode from 'jwt-decode';
 
-import { loginUser, registerUser, playlistIndex, playlistShow } from './services/api';
+import { loginUser, registerUser, playlistIndex, playlistShow, quizzesIndex, userAnswer } from './services/api';
 import PlaylistSearch from './components/PlaylistSearch';
 import ShowPlaylist from './components/ShowPlaylist';
 import Register from './components/Register';
@@ -19,15 +19,16 @@ class App extends Component {
       registerModal: false,
       currentUser: null,
       playlists: [],
-      currentPlaylist: [],
-      playlistOrder: [],
-      startvideo: null
+      currentPlaylist: null,
+      // playlistOrder: [],
+      // startvideo: null
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.toggleLoginModal = this.toggleLoginModal.bind(this)
-    this.GetOnePlaylist = this.GetOnePlaylist.bind(this)
+    this.getOnePlaylist = this.getOnePlaylist.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
+    this.userResponse = this.userResponse.bind(this)
     this.getPlaylists = this.getPlaylists.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.isLoggedIn = this.isLoggedIn.bind(this)
@@ -49,7 +50,7 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  GetOnePlaylist(id) {
+  getOnePlaylist(id) {
     playlistShow(id)
       .then((data) => {
         this.setState({
@@ -57,17 +58,32 @@ class App extends Component {
         });
         return data.playlist[0]
       })
-      .then((resp) => {
-        this.setState({
-          playlistOrder: this.setOrder(resp)
-        })
-      })
+      .then(data => this.getQuizzes())
       .catch(err => console.log(err))
   }
 
-  setOrder(playlist) {
-    this.setState
-    return playlist.videos.concat(playlist.quizzes).sort((first, second) => first.order - second.order);
+  getQuizzes() {
+    quizzesIndex()
+      .then(resp => this.combineData(this.state.currentPlaylist, resp.quizzes))
+      .then((data) => {
+        this.setState({
+          currentPlaylist: data
+        });
+      })
+  }
+
+  combineData(parentArg, childArg) {
+    const videoArr = parentArg.videos.map(video => {
+      let quizzes = childArg.filter(quiz => quiz.video_id === video.id);
+      return { ...video, quizzes }
+    })
+    parentArg.videos = videoArr
+    return parentArg
+  }
+
+  userResponse(answerId) {
+    userAnswer(this.state.currentUser.id, answerId)
+      .catch(err => console.log(err))
   }
 
   // Functions to handle all of the user login, registers and authentication
@@ -80,7 +96,7 @@ class App extends Component {
     if (res) {
       let token = decode(localStorage.getItem("jwt"))
       this.setState({
-        currentUser: token.username
+        currentUser: { username: token.username, id: token.id }
       })
     }
     return res;
@@ -101,8 +117,9 @@ class App extends Component {
       }))
       .then(() => {
         let token = decode(localStorage.getItem("jwt"))
+        console.log(token)
         this.setState({
-          currentUser: token.username
+          currentUser: { username: token.username, id: token.id }
         })
       })
       .catch(err => console.log(err))
@@ -164,7 +181,7 @@ class App extends Component {
               {...props}
               playlists={this.state.playlists}
               toggleLoginModal={this.toggleLoginModal}
-              GetOnePlaylist={this.GetOnePlaylist}
+              getOnePlaylist={this.getOnePlaylist}
             />}
           />
           <Route
@@ -172,7 +189,8 @@ class App extends Component {
             render={((props) => <ShowPlaylist
               {...props}
               currentPlaylist={this.state.currentPlaylist}
-              playlistOrder={this.state.playlistOrder}
+              userResponse={this.userResponse}
+            // playlistOrder={this.state.playlistOrder}
             />)}
           />
         </div>

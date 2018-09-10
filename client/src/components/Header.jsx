@@ -14,7 +14,7 @@ function Header(props) {
               props.isLoggedIn
                 ?
                 (
-                  <div className="navbar-item has-dropdown is-hoverable"><a className="navbar-link">{props.currentUser}&nbsp;<FontAwesomeIcon icon="user" /></a>
+                  <div className="navbar-item has-dropdown is-hoverable"><a className="navbar-link">{props.currentUser.username}&nbsp;<FontAwesomeIcon icon="user" /></a>
                     <div className="navbar-dropdown is-right">
                       <a className="navbar-item">Stats</a>
                       <a className="navbar-item">My Lessons</a>
