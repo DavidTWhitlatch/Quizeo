@@ -34,7 +34,8 @@ class AnswersController < ApplicationController
         :option,
         :is_correct,
         :id,
-        :user_id
+        :user_id,
+        :quiz_id
       )
   end
 end

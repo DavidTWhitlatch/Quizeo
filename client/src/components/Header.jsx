@@ -8,8 +8,8 @@ class Header extends Component {
     this.changeRoute = this.changeRoute.bind(this)
   }
 
-  changeRoute = () => {
-    this.context.router.history.push(`/user/playlists/`);
+  changeRoute = (route) => {
+    this.context.router.history.push(route);
   }
 
   render() {
@@ -29,9 +29,9 @@ class Header extends Component {
                       <div className="navbar-dropdown is-right">
                         <a className="navbar-item">Stats</a>
 
-                        <a className="navbar-item" onClick={this.changeRoute}>My Lessons</a>
+                        <a className="navbar-item" onClick={(() => this.changeRoute(`/user/playlists/`))}>My Lessons</a>
 
-                        <a className="navbar-item">Create a Lesson</a>
+                        <a className="navbar-item" onClick={(() => this.changeRoute('/user/playlists/manage'))}>Create a Lesson</a>
                         <hr className="navbar-divider" />
                         <a className="navbar-item" onClick={this.props.logout}>Logout</a>
                       </div>

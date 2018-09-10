@@ -50,9 +50,17 @@ class ShowPLaylist extends Component {
     while (this.state.currentVideo < this.props.currentPlaylist.videos.length) {
       if (this.state.showQuiz) {
         return (
-          <div className="quiz">
-            <div className="question">{this.props.currentPlaylist.videos[this.state.currentVideo].quizzes[0].question}</div>
-            {this.showAnswers()}
+          <div className="card">
+            <div className="card-content">
+              <header className="card-header">
+                <p className="card-header-title question">
+                  {this.props.currentPlaylist.videos[this.state.currentVideo].quizzes[0].question}
+                </p>
+              </header>
+              <div className="quiz">
+                {this.showAnswers()}
+              </div>
+            </div>
           </div>
         )
       }

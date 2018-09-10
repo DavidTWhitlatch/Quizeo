@@ -2,8 +2,8 @@ class CreatePlaylists < ActiveRecord::Migration[5.2]
   def change
     create_table :playlists do |t|
       t.string :name
+      t.string :thumbnail_url
       t.integer :user_id
-      t.boolean :is_last
 
       t.timestamps
     end

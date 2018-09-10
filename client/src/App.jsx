@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import decode from 'jwt-decode';
 
-import { loginUser, registerUser, playlistIndex, playlistShow, quizzesIndex, userAnswer, destroyPlaylist } from './services/api';
+import CreateEditPlaylist from './components/CreateEditPlaylist';
 import PlaylistSearch from './components/PlaylistSearch';
 import UserPlaylists from './components/UserPlaylists';
 import ShowPlaylist from './components/ShowPlaylist';
@@ -10,6 +10,19 @@ import Register from './components/Register';
 import Header from './components/Header';
 import Login from './components/Login';
 import './App.css';
+import {
+  destroyPlaylist,
+  updatePlaylist,
+  playlistIndex,
+  postPlaylist,
+  quizzesIndex,
+  playlistShow,
+  registerUser,
+  updateVideo,
+  userAnswer,
+  loginUser,
+  postVideo
+} from './services/api';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +34,13 @@ class App extends Component {
       currentUser: null,
       playlists: [],
       currentPlaylist: null,
+      isEditingPlaylist: true,
+      playlistTitle: '',
+      playlistImg: '',
+      currentVideoUrl: '',
+      videoOrder: 1,
+      currentQuiz: '',
+      currentAnswers: [['', false]]
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
@@ -28,16 +48,27 @@ class App extends Component {
     this.getOnePlaylist = this.getOnePlaylist.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
     this.deletePlaylist = this.deletePlaylist.bind(this)
+    this.changePlaylist = this.changePlaylist.bind(this)
     this.userResponse = this.userResponse.bind(this)
     this.getPlaylists = this.getPlaylists.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.changeVideo = this.changeVideo.bind(this)
+    this.addPlaylist = this.addPlaylist.bind(this)
     this.isLoggedIn = this.isLoggedIn.bind(this)
+    this.addVideo = this.addVideo.bind(this)
+    this.setEdit = this.setEdit.bind(this)
     this.logout = this.logout.bind(this)
   }
 
   componentDidMount() {
     this.isLoggedIn();
     this.getPlaylists();
+  }
+
+  setEdit() {
+    this.setState({
+      isEditingPlaylist: false
+    })
   }
 
   getPlaylists() {
@@ -48,12 +79,6 @@ class App extends Component {
         })
       })
       .catch(err => console.log(err))
-  }
-
-  deletePlaylist(id) {
-    destroyPlaylist(id)
-    .then(data => this.getPlaylists())
-    .catch(err => console.log(err))
   }
 
   getOnePlaylist(id) {
@@ -67,6 +92,41 @@ class App extends Component {
       .then(data => this.getQuizzes())
       .catch(err => console.log(err))
   }
+
+  addPlaylist(playlist) {
+    postPlaylist(playlist, this.state.currentUser.id)
+    .then(data => this.getOnePlaylist(data.playlist.id))
+      .then(resp => this.getPlaylists())
+      .catch(err => console.log(err))
+  }
+
+  changePlaylist(playlist) {
+    updatePlaylist(playlist)
+    .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+      .then(resp => this.getPlaylists())
+      .catch(err => console.log(err))
+  }
+
+  deletePlaylist(id) {
+    destroyPlaylist(id)
+      .then(data => this.getPlaylists())
+      .catch(err => console.log(err))
+  }
+
+  addVideo(video, id) {
+    postVideo(video, id)
+      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+      .then(resp => this.getPlaylists())
+      .catch(err => console.log(err))
+  }
+
+  changeVideo(video) {
+    updateVideo(video)
+      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+      .then(resp => this.getPlaylists())
+      .catch(err => console.log(err))
+  }
+
 
   getQuizzes() {
     quizzesIndex()
@@ -87,12 +147,19 @@ class App extends Component {
     return parentArg
   }
 
+  handleChange(e) {
+    const { name, value } = e.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  // Functions to handle all of the user login, registers and authentication
+
   userResponse(answerId) {
     userAnswer(this.state.currentUser.id, answerId)
       .catch(err => console.log(err))
   }
-
-  // Functions to handle all of the user login, registers and authentication
 
   isLoggedIn() {
     const res = !!(localStorage.getItem("jwt"));
@@ -113,7 +180,6 @@ class App extends Component {
       .then(() => this.handleLoginSubmit(username, password))
       .catch(err => console.log(err))
   }
-
 
   handleLoginSubmit(username, password) {
     loginUser({ "username": username, "password": password })
@@ -143,13 +209,6 @@ class App extends Component {
     })
   }
 
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
   logout() {
     localStorage.removeItem("jwt")
     this.setState({
@@ -170,15 +229,15 @@ class App extends Component {
             logout={this.logout}
           />
           <Login
+            loginModal={this.state.loginModal}
             toggleRegisterModal={this.toggleRegisterModal}
             handleLoginSubmit={this.handleLoginSubmit}
             toggleLoginModal={this.toggleLoginModal}
-            loginModal={this.state.loginModal}
           />
           <Register
+            registerModal={this.state.registerModal}
             toggleRegisterModal={this.toggleRegisterModal}
             handleRegister={this.handleRegister}
-            registerModal={this.state.registerModal}
           />
           <Route
             exact={true}
@@ -199,13 +258,34 @@ class App extends Component {
             />)}
           />
           <Route
+            exact={true}
             path='/user/playlists'
             render={((props) => <UserPlaylists
               {...props}
+              currentUser={this.state.currentUser}
               playlists={this.state.playlists}
               getOnePlaylist={this.getOnePlaylist}
-              currentUser={this.state.currentUser}
               deletePlaylist={this.deletePlaylist}
+              setEdit={this.setEdit}
+            />)}
+          />
+          <Route
+            path='/user/playlists/manage'
+            render={((props) => <CreateEditPlaylist
+              {...props}
+              isEditingPlaylist={this.state.isEditingPlaylist}
+              currentPlaylist={this.state.currentPlaylist}
+              currentVideoUrl={this.state.currentVideoUrl}
+              currentAnswers={this.state.currentAnswers}
+              playlistTitle={this.state.playlistTitle}
+              playlistImg={this.state.playlistImg}
+              currentQuiz={this.state.currentQuiz}
+              videoOrder={this.state.videoOrder}
+              changePlaylist={this.changePlaylist}
+              handleChange={this.handleChange}
+              addPlaylist={this.addPlaylist}
+              changeVideo={this.changeVideo}
+              addVideo={this.addVideo}
             />)}
           />
         </div>

@@ -77,9 +77,77 @@ export function destroyPlaylist(id) {
   const opts = {
     method: 'DELETE'
   }
-  
+
   return fetch(`${BASE_URL}/playlists/${id}`, opts)
-  .catch(err => {
-    throw Error(err);
-  });
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function postPlaylist(playlist, id) {
+  const opts = {
+    method: 'POST',
+    body: JSON.stringify({ "data": { "attributes": playlist } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/users/${id}/playlists`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function updatePlaylist(playlist) {
+  const opts = {
+    method: 'PUT',
+    body: JSON.stringify({ "data": { "attributes": playlist } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/playlists/${playlist.id}`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function postVideo(video, id) {
+  const opts = {
+    method: 'POST',
+    body: JSON.stringify({ "data": { "attributes": video } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/playlists/${id}/videos`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function updateVideo(video) {
+  const opts = {
+    method: 'PUT',
+    body: JSON.stringify({ "data": { "attributes": { url: video } } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/playlists/${video.id}`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
 }

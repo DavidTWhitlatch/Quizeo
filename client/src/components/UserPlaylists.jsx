@@ -8,45 +8,49 @@ class UserPlaylists extends Component {
   }
 
   userFilter(playlist) {
-      return playlist.user_id === this.props.currentUser.id
+    return playlist.user_id === this.props.currentUser.id
   }
 
   changeRoute = (playlistId) => {
-    this.context.router.history.push(`/playlists/${playlistId}`);
+    this.context.router.history.push(playlistId);
   }
 
   render() {
     return (
-        <div className="list-playlists">
-          {
-            this.props.playlists.filter(item => this.userFilter(item)).map((playlist) => (
-              <div
-                className="card"
-                key={playlist.id}
-              >
-                <div className="card-content">
-                  <header className="card-header">
-                    <p className="card-header-title">
-                      {playlist.name}
-                    </p>
-                  </header>
-                  <div className="card-image">
-                    <figure className="image">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder" />
-                    </figure>
-                  </div>
-                  <button onClick={() => {
-                    this.props.getOnePlaylist(playlist.id);
-                    this.changeRoute(playlist.id);
-                  }}>play</button>
-                  <button>Edit</button>
-                  <button onClick={(() =>this.props.deletePlaylist(playlist.id))}>Delete</button>
+      <div className="list-playlists">
+        {
+          this.props.playlists.filter(item => this.userFilter(item)).map((playlist) => (
+            <div
+              className="card"
+              key={playlist.id}
+            >
+              <div className="card-content">
+                <header className="card-header">
+                  <p className="card-header-title">
+                    {playlist.name}
+                  </p>
+                </header>
+                <div className="card-image">
+                  <figure className="image">
+                    <img src={playlist.thumbnail_url} alt="Placeholder" />
+                  </figure>
                 </div>
+                <button onClick={() => {
+                  this.props.getOnePlaylist(playlist.id);
+                  this.changeRoute(`playlists/${playlist.id}`);
+                }}>play</button>
+                <button onClick={(() => {
+                  this.props.getOnePlaylist(playlist.id);
+                  this.changeRoute('/user/playlists/manage');
+                  this.props.setEdit();
+                })}>Edit</button>
+                <button onClick={(() => this.props.deletePlaylist(playlist.id))}>Delete</button>
               </div>
-            ))
-          }
-          <hr className="line-break" />
-        </div>
+            </div>
+          ))
+        }
+        <hr className="line-break" />
+      </div>
     )
   }
 }

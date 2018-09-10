@@ -74,7 +74,7 @@ class PlaylistSearch extends Component {
                     </header>
                     <div className="card-image">
                       <figure className="image">
-                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder" />
+                        <img src={playlist.thumbnail_url} alt="Placeholder" />
                       </figure>
                     </div>
                   </div>
@@ -82,24 +82,6 @@ class PlaylistSearch extends Component {
               ))
             }
             <hr className="line-break" />
-            {
-              this.props.playlists.map((playlist) => (
-                <div key={playlist.id} className="card">
-                  <div className="card-content">
-                    <header className="card-header">
-                      <p className="card-header-title">
-                        {playlist.name}
-                      </p>
-                    </header>
-                    <div className="card-image">
-                      <figure className="image">
-                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder" />
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
           </div>
         </div>
       </div>
