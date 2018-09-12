@@ -18,10 +18,14 @@ import {
   quizzesIndex,
   playlistShow,
   registerUser,
+  updateAnswer,
   updateVideo,
+  updateQuiz,
   userAnswer,
+  postAnswer,
   loginUser,
-  postVideo
+  postVideo,
+  postQuiz
 } from './services/api';
 
 class App extends Component {
@@ -43,6 +47,7 @@ class App extends Component {
       currentAnswers: [['', false]]
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
+    this.handleAnswerChange = this.handleAnswerChange.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.toggleLoginModal = this.toggleLoginModal.bind(this)
     this.getOnePlaylist = this.getOnePlaylist.bind(this)
@@ -55,7 +60,11 @@ class App extends Component {
     this.changeVideo = this.changeVideo.bind(this)
     this.addPlaylist = this.addPlaylist.bind(this)
     this.isLoggedIn = this.isLoggedIn.bind(this)
+    this.setAnswers = this.setAnswers.bind(this)
+    this.changeQuiz = this.changeQuiz.bind(this)
+    this.resetForm = this.resetForm.bind(this)
     this.addVideo = this.addVideo.bind(this)
+    this.addQuiz = this.addQuiz.bind(this)
     this.setEdit = this.setEdit.bind(this)
     this.logout = this.logout.bind(this)
   }
@@ -63,6 +72,38 @@ class App extends Component {
   componentDidMount() {
     this.isLoggedIn();
     this.getPlaylists();
+  }
+
+  resetForm() {
+    this.setState({
+      currentPlaylist: null,
+      isEditingPlaylist: true,
+      playlistTitle: '',
+      playlistImg: '',
+      currentVideoUrl: '',
+      videoOrder: 1,
+      currentQuiz: '',
+      currentAnswers: [['', false, null]]
+    })
+  }
+
+  setAnswers(answersArr) {
+    let returnArr = []
+    answersArr.map(answer => {
+      returnArr.push([answer.option, answer.is_correct, answer.id])
+    })
+    this.setState({
+      currentAnswers: returnArr
+
+    })
+  }
+
+  handleAnswerChange(e, idx, answerIdx) {
+    let newArr = this.state.currentAnswers
+    newArr[idx][answerIdx] = e.target.value
+    this.setState({
+      currentAnswers: newArr
+    })
   }
 
   setEdit() {
@@ -77,6 +118,7 @@ class App extends Component {
         this.setState({
           playlists: data.playlists
         })
+        return data.playlists
       })
       .catch(err => console.log(err))
   }
@@ -95,14 +137,14 @@ class App extends Component {
 
   addPlaylist(playlist) {
     postPlaylist(playlist, this.state.currentUser.id)
-    .then(data => this.getOnePlaylist(data.playlist.id))
+      .then(data => this.getOnePlaylist(data.playlist.id))
       .then(resp => this.getPlaylists())
       .catch(err => console.log(err))
   }
 
   changePlaylist(playlist) {
     updatePlaylist(playlist)
-    .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
       .then(resp => this.getPlaylists())
       .catch(err => console.log(err))
   }
@@ -136,6 +178,30 @@ class App extends Component {
           currentPlaylist: data
         });
       })
+  }
+
+  addQuiz(quiz) {
+    postQuiz(this.state.currentQuiz, quiz)
+      .then((data) => this.addAnwers(data.id, this.state.currentAnswers))
+  }
+
+  changeQuiz(quiz) {
+    updateQuiz({question: this.state.currentQuiz, id: quiz.id})
+      .then((data) => this.changeAnwers(this.state.currentAnswers))
+  }
+
+  addAnwers(quiz, ansArr) {
+    ansArr.forEach(answer => {
+      postAnswer(quiz, { option: answer[0], is_correct: answer[1] })
+      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+    })
+  }
+
+  changeAnwers(ansArr) {
+    ansArr.forEach(answer => {
+      updateAnswer({ option: answer[0], is_correct: answer[1], id: answer[2]})
+      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+    })
   }
 
   combineData(parentArg, childArg) {
@@ -226,6 +292,7 @@ class App extends Component {
             currentUser={this.state.currentUser}
             isLoggedIn={this.state.isLoggedIn}
             toggleLoginModal={this.toggleLoginModal}
+            resetForm={this.resetForm}
             logout={this.logout}
           />
           <Login
@@ -244,6 +311,7 @@ class App extends Component {
             path="/"
             render={(props) => <PlaylistSearch
               {...props}
+              isLoggedIn={this.state.isLoggedIn}
               playlists={this.state.playlists}
               toggleLoginModal={this.toggleLoginModal}
               getOnePlaylist={this.getOnePlaylist}
@@ -281,11 +349,15 @@ class App extends Component {
               playlistImg={this.state.playlistImg}
               currentQuiz={this.state.currentQuiz}
               videoOrder={this.state.videoOrder}
+              handleAnswerChange={this.handleAnswerChange}
               changePlaylist={this.changePlaylist}
               handleChange={this.handleChange}
               addPlaylist={this.addPlaylist}
               changeVideo={this.changeVideo}
+              changeQuiz={this.changeQuiz}
+              setAnswers={this.setAnswers}
               addVideo={this.addVideo}
+              addQuiz={this.addQuiz}
             />)}
           />
         </div>

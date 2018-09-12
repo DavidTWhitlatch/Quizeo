@@ -61,8 +61,12 @@ class PlaylistSearch extends Component {
                 <div
                   className="card"
                   onClick={() => {
-                    this.props.getOnePlaylist(playlist.id);
-                    this.changeRoute(playlist.id);
+                    if (this.props.isLoggedIn) {
+                        this.props.getOnePlaylist(playlist.id);
+                        this.changeRoute(playlist.id);
+                    } else {
+                      this.props.toggleLoginModal();
+                    }
                   }}
                   key={playlist.id}
                 >

@@ -1,4 +1,5 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+const BASE_URL = 'http://localhost:3001';
+// process.env.REACT_APP_BASE_URL || 
 
 
 export function loginUser(userInfo) {
@@ -146,6 +147,74 @@ export function updateVideo(video) {
 
 
   return fetch(`${BASE_URL}/playlists/${video.id}`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function postQuiz(quiz, id) {
+  const opts = {
+    method: 'POST',
+    body: JSON.stringify({ "data": { "attributes": quiz } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return fetch(`${BASE_URL}/videos/${id}/quizzes`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function updateQuiz(quiz) {
+  const opts = {
+    method: 'PUT',
+    body: JSON.stringify({ "data": { "attributes": quiz } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/playlists/${quiz.id}`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function postAnswer(id, answer) {
+  const opts = {
+    method: 'POST',
+    body: JSON.stringify({ "data": { "attributes": answer } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/quizzes/${id}/answers`, opts)
+    .then(resp => resp.json())
+    .catch(err => {
+      throw Error(err);
+    });
+}
+
+export function updateAnswer(answer) {
+  console.log(answer)
+  const opts = {
+    method: 'PUT',
+    body: JSON.stringify({ "data": { "attributes": answer } }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  return fetch(`${BASE_URL}/answers/${answer.id}`, opts)
     .then(resp => resp.json())
     .catch(err => {
       throw Error(err);

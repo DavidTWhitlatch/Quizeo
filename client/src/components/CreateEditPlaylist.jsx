@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 class CreateEditPlaylist extends Component {
   constructor(props) {
     super(props);
@@ -11,9 +10,6 @@ class CreateEditPlaylist extends Component {
       isEditingQuiz: false,
       addVideo: false,
       addQuiz: false,
-
-      currentQuiz: '',
-      currentAnswers: [['', false]]
     }
     this.changeRoute = this.changeRoute.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -72,9 +68,9 @@ class CreateEditPlaylist extends Component {
                       <div>{this.props.currentPlaylist.name}</div>
                       <div>{this.props.currentPlaylist.thumbnail_url}</div>
                       <button onClick={() => {
-                      this.props.handleChange({ target: { name: 'playlistTitle', value: this.props.currentPlaylist.name } })
-                      this.props.handleChange({ target: { name: 'playlistImg', value: this.props.currentPlaylist.thumbnail_url } })
-                      this.props.handleChange({ target: { name: 'isEditingPlaylist', value: true } })
+                        this.props.handleChange({ target: { name: 'playlistTitle', value: this.props.currentPlaylist.name } })
+                        this.props.handleChange({ target: { name: 'playlistImg', value: this.props.currentPlaylist.thumbnail_url } })
+                        this.props.handleChange({ target: { name: 'isEditingPlaylist', value: true } })
                       }}>edit</button>
                     </div>)
                   }
@@ -113,25 +109,123 @@ class CreateEditPlaylist extends Component {
                             this.setState({
                               isEditingVideo: video.id
                             })
-                          this.props.handleChange({ target: { name: 'currentVideoUrl', value: video.url } })
-                        }}>Edit</button>
+                            this.props.handleChange({ target: { name: 'currentVideoUrl', value: video.url } })
+                          }}>Edit</button>
                           <hr />
                           {
                             video.quizzes && video.quizzes.length ?
-                              (<div>
-                                <header className="card-header">
-                                  <p className="card-header-title">
-                                    {video.quizzes.question}
-                                  </p>
-                                </header>
-                                {
-                                  video.quizzes.answers && video.quizzes.answers.map(answer => (
-                                    <div key={answer.id}>{answer.option}</div>
-                                  ))
+                              video.quizzes.map((quiz, idx) => (
+                                this.state.isEditingQuiz ?
+                                  (<div>
+                                    <header className="card-header">
+                                      <p className="card-header-title">
+                                        Quiz {idx + 1}:
+                                      <br />
+                                        <input
+                                          name="currentQuiz"
+                                          value={this.props.currentQuiz}
+                                          type="text"
+                                          onChange={this.props.handleChange}
+                                          placeholder="Question for your quiz"
+                                        />
+                                      </p>
+                                    </header>
+                                    {
+                                      this.props.currentAnswers.map((answer, idx) => (
+                                        <div key={answer[0]}>
+                                          <input
+                                            name="currentAnswers"
+                                            value={this.props.currentAnswers[idx][0]}
+                                            type="text"
+                                            onChange={(e) => this.props.handleAnswerChange(e, idx, 0)}
+                                            placeholder="Question for your quiz"
+                                          />
+                                          <input
+                                            type="checkbox"
+                                            value={!(this.props.currentAnswers[idx][1])}
+                                            onChange={(e) => this.props.handleAnswerChange(e, idx, 1)}
+                                            checked={this.props.currentAnswers[idx][1]}
+                                            /> correct answer?
+                                        </div>
+                                      ))
+                                    }
+                                    <button onClick={() => {
+                                      this.setState({ isEditingQuiz: false });
+                                      this.props.changeQuiz(quiz);
+                                    }
+                                    }>Submit</button>
+                                  </div>)
+                                  :
+                                  (<div>
+                                    <header className="card-header">
+                                      <p className="card-header-title">
+                                        Quiz {idx + 1}:
+                                      <br />
+                                        {quiz.question}
+                                      </p>
+                                    </header>
+                                    {
+                                      quiz.answers.map(answer => (
+                                        <div key={answer.id}><strong>{answer.option}</strong> {answer.is_correct && "Correct answer"}</div>
+                                      ))
+                                    }
+                                    <button onClick={() => {
+                                      this.props.handleChange({ target: { name: 'currentQuiz', value: quiz.question } });
+                                      this.props.setAnswers(quiz.answers);
+                                      this.setState({ isEditingQuiz: true });
+                                    }}>edit</button>
+                                  </div>)
+                              ))
+                              :
+                              this.state.addQuiz ?
+                                (<div>
+                                  <header className="card-header">
+                                    <p className="card-header-title">
+                                      Quiz {idx + 1}:
+                                  <br />
+                                      <input
+                                        name="currentQuiz"
+                                        value={this.props.currentQuiz}
+                                        type="text"
+                                        onChange={this.props.handleChange}
+                                        placeholder="Question for your quiz"
+                                      />
+                                    </p>
+                                  </header>
+                                  {
+                                    this.props.currentAnswers.map((answer, idx) => (
+                                      <div key={answer[0]}>
+                                        <input
+                                          name="currentAnswers"
+                                          value={this.props.currentAnswers[idx][0]}
+                                          type="text"
+                                          onChange={(e) => this.props.handleAnswerChange(e, idx, 0)}
+                                          placeholder="Question for your quiz"
+                                        />
+                                        <input
+                                          type="checkbox"
+                                          value={!(this.props.currentAnswers[idx][1])}
+                                          onChange={(e) => this.props.handleAnswerChange(e, idx, 1)}
+                                          checked={this.props.currentAnswers[idx][1]}
+                                          />
+                                      </div>
+                                    ))
+                                  }
+                                  <div>Add another option</div>
+                                  <button conClick={() => {
+
+                                  }}>New option</button>
+                                  <button onClick={() => {
+                                    this.setState({ addQuiz: false });
+                                    this.props.addQuiz(video.id);
+                                  }
+                                  }>Submit</button>
+                                </div>)
+                                :
+                                (<button onClick={() => {
+                                  this.setState({ addQuiz: true });
                                 }
-                                <button>edit</button>
-                              </div>) :
-                              (<button>Add Quiz</button>)
+                                }>Add Quiz</button>)
                           }
                         </div>)
                     }
@@ -163,13 +257,16 @@ class CreateEditPlaylist extends Component {
                             addVideo: false,
                           })
                           this.props.handleChange({ target: { name: 'currentVideoUrl', value: '' } })
+                          this.props.handleChange({ target: { name: 'videoOrder', value: this.props.videoOrder + 1 } })
                         }}>Submit</button>
                       </div>
                     </div>
                   </div>) :
-                  (<button onClick={() => this.setState({
-                    addVideo: true
-                  })}>Add Video</button>))
+                  (<button onClick={() => {
+                    this.setState({
+                      addVideo: true
+                    })
+                  }}>Add Video</button>))
               }
             </div>
           </div>
