@@ -7,7 +7,7 @@ class CreateEditPlaylist extends Component {
     super(props);
     this.state = {
       isEditingVideo: false,
-      isEditingQuiz: false,
+      isEditingQuiz: null,
       addVideo: false,
       addQuiz: false,
     }
@@ -115,12 +115,12 @@ class CreateEditPlaylist extends Component {
                           {
                             video.quizzes && video.quizzes.length ?
                               video.quizzes.map((quiz, idx) => (
-                                this.state.isEditingQuiz ?
-                                  (<div>
+                                this.state.isEditingQuiz === quiz.id ?
+                                  (<div key={quiz.id}>
                                     <header className="card-header">
                                       <p className="card-header-title">
-                                        Quiz {idx + 1}:
-                                      <br />
+                                        Quiz:
+                                    <br />
                                         <input
                                           name="currentQuiz"
                                           value={this.props.currentQuiz}
@@ -130,37 +130,39 @@ class CreateEditPlaylist extends Component {
                                         />
                                       </p>
                                     </header>
-                                    {
-                                      this.props.currentAnswers.map((answer, idx) => (
-                                        <div key={answer[0]}>
-                                          <input
-                                            name="currentAnswers"
-                                            value={this.props.currentAnswers[idx][0]}
-                                            type="text"
-                                            onChange={(e) => this.props.handleAnswerChange(e, idx, 0)}
-                                            placeholder="Question for your quiz"
-                                          />
-                                          <input
-                                            type="checkbox"
-                                            value={!(this.props.currentAnswers[idx][1])}
-                                            onChange={(e) => this.props.handleAnswerChange(e, idx, 1)}
-                                            checked={this.props.currentAnswers[idx][1]}
-                                            /> correct answer?
-                                        </div>
-                                      ))
-                                    }
+                                    {this.props.currentAnswers.map((answer, idx) => {
+                                      return (<div key={idx} >
+                                        <input
+                                          name="currentAnswers"
+                                          value={this.props.currentAnswers[idx].option}
+                                          type="text"
+                                          onChange={(e) => this.props.handleAnswerChange(e, idx, "option")}
+                                          placeholder="Question for your quiz"
+                                        />
+                                        <input
+                                          type="checkbox"
+                                          value={!(this.props.currentAnswers[idx].is_correct)}
+                                          onClick={(e) => this.props.handleAnswerChange(e, idx, "is_correct")}
+                                          checked={this.props.currentAnswers[idx].is_correct}
+                                        /> correct answer?
+                                      </div>
+                                      )
+                                    })}
                                     <button onClick={() => {
-                                      this.setState({ isEditingQuiz: false });
+                                      this.props.addNewAnswer()
+                                    }}>New option</button>
+                                    <button onClick={() => {
+                                      this.setState({ isEditingQuiz: null })
                                       this.props.changeQuiz(quiz);
                                     }
                                     }>Submit</button>
                                   </div>)
                                   :
-                                  (<div>
+                                  (<div key={idx}>
                                     <header className="card-header">
                                       <p className="card-header-title">
                                         Quiz {idx + 1}:
-                                      <br />
+                                        <br />
                                         {quiz.question}
                                       </p>
                                     </header>
@@ -172,7 +174,10 @@ class CreateEditPlaylist extends Component {
                                     <button onClick={() => {
                                       this.props.handleChange({ target: { name: 'currentQuiz', value: quiz.question } });
                                       this.props.setAnswers(quiz.answers);
-                                      this.setState({ isEditingQuiz: true });
+                                      this.setState({
+                                        isEditingQuiz: quiz.id,
+                                        addVideo: false
+                                      })
                                     }}>edit</button>
                                   </div>)
                               ))
@@ -181,8 +186,8 @@ class CreateEditPlaylist extends Component {
                                 (<div>
                                   <header className="card-header">
                                     <p className="card-header-title">
-                                      Quiz {idx + 1}:
-                                  <br />
+                                      Quiz:
+                                    <br />
                                       <input
                                         name="currentQuiz"
                                         value={this.props.currentQuiz}
@@ -192,38 +197,35 @@ class CreateEditPlaylist extends Component {
                                       />
                                     </p>
                                   </header>
-                                  {
-                                    this.props.currentAnswers.map((answer, idx) => (
-                                      <div key={answer[0]}>
-                                        <input
-                                          name="currentAnswers"
-                                          value={this.props.currentAnswers[idx][0]}
-                                          type="text"
-                                          onChange={(e) => this.props.handleAnswerChange(e, idx, 0)}
-                                          placeholder="Question for your quiz"
-                                        />
-                                        <input
-                                          type="checkbox"
-                                          value={!(this.props.currentAnswers[idx][1])}
-                                          onChange={(e) => this.props.handleAnswerChange(e, idx, 1)}
-                                          checked={this.props.currentAnswers[idx][1]}
-                                          />
-                                      </div>
-                                    ))
-                                  }
-                                  <div>Add another option</div>
-                                  <button conClick={() => {
-
+                                  {this.props.currentAnswers.map((answer, idx) => (
+                                    <div key={idx}>
+                                      <input
+                                        name="currentAnswers"
+                                        value={this.props.currentAnswers[idx].option}
+                                        type="text"
+                                        onChange={(e) => this.props.handleAnswerChange(e, idx, "option")}
+                                        placeholder="Question for your quiz"
+                                      />
+                                      <input
+                                        type="checkbox"
+                                        value={!(this.props.currentAnswers[idx].is_correct)}
+                                        onClick={(e) => this.props.handleAnswerChange(e, idx, "is_correct")}
+                                        checked={this.props.currentAnswers[idx].is_correct}
+                                      /> correct answer?
+                                    </div>))}
+                                  <button onClick={() => {
+                                    this.props.addNewAnswer()
                                   }}>New option</button>
                                   <button onClick={() => {
-                                    this.setState({ addQuiz: false });
                                     this.props.addQuiz(video.id);
+                                    this.setState({ addQuiz: false })
                                   }
                                   }>Submit</button>
                                 </div>)
                                 :
                                 (<button onClick={() => {
                                   this.setState({ addQuiz: true });
+                                  this.props.setNewQuiz()
                                 }
                                 }>Add Quiz</button>)
                           }

@@ -5,9 +5,9 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = Video.find(params[:video_id])
-    @playlist.videos << Quiz.new(quiz_params)
-    render json: { video: @playlist.videos.last }
+    @video = Video.find(params[:video_id])
+    @video.quizzes << Quiz.new(quiz_params)
+    render json: { quiz: @video.quizzes.last }
   end
 
   def update

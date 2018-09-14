@@ -156,7 +156,7 @@ export function updateVideo(video) {
 export function postQuiz(quiz, id) {
   const opts = {
     method: 'POST',
-    body: JSON.stringify({ "data": { "attributes": quiz } }),
+    body: JSON.stringify({ "data": { "attributes": { question: quiz } } }),
     headers: {
       'Content-Type': 'application/json'
     }
@@ -179,17 +179,18 @@ export function updateQuiz(quiz) {
   };
 
 
-  return fetch(`${BASE_URL}/playlists/${quiz.id}`, opts)
+  return fetch(`${BASE_URL}/quizzes/${quiz.id}`, opts)
     .then(resp => resp.json())
     .catch(err => {
       throw Error(err);
     });
 }
 
-export function postAnswer(id, answer) {
+export function postAnswer(id, { option, is_correct }) {
+  debugger;
   const opts = {
     method: 'POST',
-    body: JSON.stringify({ "data": { "attributes": answer } }),
+    body: JSON.stringify({ "data": { "attributes": { option: option, is_correct:is_correct } } }),
     headers: {
       'Content-Type': 'application/json'
     }
@@ -203,18 +204,17 @@ export function postAnswer(id, answer) {
     });
 }
 
-export function updateAnswer(answer) {
-  console.log(answer)
+export function updateAnswer({ option, is_correct , id}) {
   const opts = {
     method: 'PUT',
-    body: JSON.stringify({ "data": { "attributes": answer } }),
+    body: JSON.stringify({ "data": { "attributes": { option, is_correct } } }),
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
 
-  return fetch(`${BASE_URL}/answers/${answer.id}`, opts)
+  return fetch(`${BASE_URL}/answers/${id}`, opts)
     .then(resp => resp.json())
     .catch(err => {
       throw Error(err);

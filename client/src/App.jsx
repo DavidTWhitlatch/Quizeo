@@ -44,7 +44,7 @@ class App extends Component {
       currentVideoUrl: '',
       videoOrder: 1,
       currentQuiz: '',
-      currentAnswers: [['', false]]
+      currentAnswers: [{ option: '', is_correct: false, id: null }],
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
     this.handleAnswerChange = this.handleAnswerChange.bind(this)
@@ -55,6 +55,7 @@ class App extends Component {
     this.deletePlaylist = this.deletePlaylist.bind(this)
     this.changePlaylist = this.changePlaylist.bind(this)
     this.userResponse = this.userResponse.bind(this)
+    this.addNewAnswer = this.addNewAnswer.bind(this)
     this.getPlaylists = this.getPlaylists.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.changeVideo = this.changeVideo.bind(this)
@@ -62,6 +63,7 @@ class App extends Component {
     this.isLoggedIn = this.isLoggedIn.bind(this)
     this.setAnswers = this.setAnswers.bind(this)
     this.changeQuiz = this.changeQuiz.bind(this)
+    this.setNewQuiz = this.setNewQuiz.bind(this)
     this.resetForm = this.resetForm.bind(this)
     this.addVideo = this.addVideo.bind(this)
     this.addQuiz = this.addQuiz.bind(this)
@@ -83,27 +85,47 @@ class App extends Component {
       currentVideoUrl: '',
       videoOrder: 1,
       currentQuiz: '',
-      currentAnswers: [['', false, null]]
+      currentAnswers: [{ option: '', is_correct: false, id: null }]
     })
   }
 
   setAnswers(answersArr) {
     let returnArr = []
     answersArr.map(answer => {
-      returnArr.push([answer.option, answer.is_correct, answer.id])
+      returnArr.push({ option: answer.option, is_correct: answer.is_correct, id: answer.id })
     })
     this.setState({
       currentAnswers: returnArr
-
     })
   }
 
+  addNewAnswer() {
+    this.setState(prevState => ({
+      currentAnswers: [...prevState.currentAnswers, { option: '', is_correct: false, id: null }]
+    }));
+  }
+
+  setNewQuiz() {
+    this.setState({
+      currentQuiz: "",
+      currentAnswers: [{ option: '', is_correct: false, id: null }]
+    })
+  }
+
+  resetFocus() {
+    let newArr = this.state.currentAnswers.map(answer => {
+      answer[3] = false
+    })
+    this.setState({ currentAnswers: newArr })
+  }
+
   handleAnswerChange(e, idx, answerIdx) {
-    let newArr = this.state.currentAnswers
-    newArr[idx][answerIdx] = e.target.value
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    let newArr = this.state.currentAnswers;
+    newArr[idx][answerIdx] = value;
     this.setState({
       currentAnswers: newArr
-    })
+    });
   }
 
   setEdit() {
@@ -180,27 +202,37 @@ class App extends Component {
       })
   }
 
-  addQuiz(quiz) {
-    postQuiz(this.state.currentQuiz, quiz)
-      .then((data) => this.addAnwers(data.id, this.state.currentAnswers))
+  addQuiz(videoId) {
+    postQuiz(this.state.currentQuiz, videoId)
+      .then((data) => this.addAnwers(data.quiz.id, this.state.currentAnswers))
   }
 
   changeQuiz(quiz) {
-    updateQuiz({question: this.state.currentQuiz, id: quiz.id})
-      .then((data) => this.changeAnwers(this.state.currentAnswers))
+    updateQuiz({ question: this.state.currentQuiz, id: quiz.id })
+    // .then(data => console.log(data))
+      .then(data => this.changeAnwers(data.quiz.id, this.state.currentAnswers))
   }
 
   addAnwers(quiz, ansArr) {
     ansArr.forEach(answer => {
-      postAnswer(quiz, { option: answer[0], is_correct: answer[1] })
-      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+      postAnswer(quiz, { option: answer.option, is_correct: answer.is_correct })
+        .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+        .then(resp => this.getPlaylists())
     })
   }
 
-  changeAnwers(ansArr) {
+  changeAnwers(quizID, ansArr) {
     ansArr.forEach(answer => {
-      updateAnswer({ option: answer[0], is_correct: answer[1], id: answer[2]})
-      .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+      debugger;
+      if (answer.id) {
+        updateAnswer(answer)
+          .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+          .then(resp => this.getPlaylists())
+      } else {
+        postAnswer(quizID, answer)
+          .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
+          .then(resp => this.getPlaylists())
+      }
     })
   }
 
@@ -352,8 +384,10 @@ class App extends Component {
               handleAnswerChange={this.handleAnswerChange}
               changePlaylist={this.changePlaylist}
               handleChange={this.handleChange}
+              addNewAnswer={this.addNewAnswer}
               addPlaylist={this.addPlaylist}
               changeVideo={this.changeVideo}
+              setNewQuiz={this.setNewQuiz}
               changeQuiz={this.changeQuiz}
               setAnswers={this.setAnswers}
               addVideo={this.addVideo}
