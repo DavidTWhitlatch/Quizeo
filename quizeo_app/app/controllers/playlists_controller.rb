@@ -3,12 +3,12 @@
 class PlaylistsController < ApplicationController
   def index
     @playlists = Playlist.all
-    render json: { playlists: @playlists }, include: :videos
+    render json: @playlists, include: { :videos => { :include => { :quizzes => { :include => [ :answers ] } } } }
   end
 
   def show
     @playlist = Playlist.where(id: params[:id])
-    render json: { playlist: @playlist }, include: :videos
+    render json: { playlist: @playlist }, include: { :videos => { :include => { :quizzes => { :include => [ :answers ] } } } }
   end
 
   def create

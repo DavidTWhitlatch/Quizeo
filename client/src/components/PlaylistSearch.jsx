@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 
 class PlaylistSearch extends Component {
@@ -24,7 +24,7 @@ class PlaylistSearch extends Component {
   }
 
   changeRoute = (playlistId) => {
-    this.context.router.history.push(`/playlists/${playlistId}`);
+    this.props.history.push(`/playlists/${playlistId}`);
   }
 
   render() {
@@ -54,47 +54,50 @@ class PlaylistSearch extends Component {
             </div>
           </div>
         </section>
-        <div className="scrollable">
-          <div className="list-playlists">
-            {
-              this.props.playlists.filter(item => this.filterFN(item)).map((playlist) => (
-                <div
-                  className="card"
-                  onClick={() => {
-                    if (this.props.isLoggedIn) {
+        {this.props.playlists.length ?
+          (<div className="scrollable">
+            <div className="list-playlists">
+              {
+                this.props.playlists.filter(item => this.filterFN(item)).map((playlist) => (
+                  <div
+                    className="card"
+                    onClick={() => {
+                      if (this.props.isLoggedIn) {
                         this.props.getOnePlaylist(playlist.id);
                         this.changeRoute(playlist.id);
-                    } else {
-                      this.props.toggleLoginModal();
-                    }
-                  }}
-                  key={playlist.id}
-                >
-                  <div className="card-content">
-                    <header className="card-header">
-                      <p className="card-header-title">
-                        {playlist.name}
-                      </p>
-                    </header>
-                    <div className="card-image">
-                      <figure className="image">
-                        <img src={playlist.thumbnail_url} alt="Placeholder" />
-                      </figure>
+                      } else {
+                        this.props.toggleLoginModal();
+                      }
+                    }}
+                    key={playlist.id}
+                  >
+                    <div className="card-content">
+                      <header className="card-header">
+                        <p className="card-header-title">
+                          {playlist.name}
+                        </p>
+                      </header>
+                      <div className="card-image">
+                        <figure className="image">
+                          <img src={playlist.thumbnail_url} alt="Placeholder" />
+                        </figure>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
-            }
-            <hr className="line-break" />
+                ))}
+            </div>
+          </div>) :
+          <div className="center">
+            <div>loading...</div>
+            <img src={window.location.origin + '/img/loading.gif'} alt="Loading" />
           </div>
-        </div>
+        }
+        <hr className="line-break" />
       </div>
     )
   }
 }
 
-PlaylistSearch.contextTypes = {
-  router: PropTypes.func.isRequired
-}
 
-export default PlaylistSearch;
+
+export default withRouter(PlaylistSearch);

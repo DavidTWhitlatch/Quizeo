@@ -5,7 +5,7 @@ class VideosController < ApplicationController
     @playlist.videos << Video.new(video_params)
     render json: { video: @playlist.videos.last }
   end
-  
+
   def update
     @video = Video.find(params[:id])
     @video.update(video_params)

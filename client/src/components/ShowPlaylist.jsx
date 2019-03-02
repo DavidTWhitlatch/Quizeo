@@ -11,6 +11,7 @@ class ShowPLaylist extends Component {
       controls: true,
       currentVideo: 0,
       showQuiz: false,
+      wasSelected: null
     };
     this.onEnded = this.onEnded.bind(this)
   }
@@ -30,20 +31,30 @@ class ShowPLaylist extends Component {
     })
   }
 
+  highlightDiv(answer) {
+    if (this.state.wasSelected) {
+      if (answer.is_correct) {
+        return "correct"
+      } else {
+        return "incorrect"
+      }
+    }
+  }
+
+
   showAnswers() {
-    return this.props.currentPlaylist.videos[this.state.currentVideo].quizzes[0].answers.map(answer => (
-      <div
-        className="answers"
-        onClick={(() => {
-          this.props.userResponse(answer.id);
-          this.toggleQuiz();
-          this.setState({
-            currentVideo: (this.state.currentVideo + 1),
-            playing: true
-          });
-        })}
-      >{answer.option}</div>
-    ))
+    return (
+      this.props.currentPlaylist.videos[this.state.currentVideo].quizzes[0].answers.map(answer => (
+        <div
+          className={this.highlightDiv(answer) + " answers"}
+          onClick={(() => {
+            this.props.userResponse(answer.id);
+            this.setState({
+              wasSelected: answer.id
+            });
+          })}
+        >{answer.option}</div>
+      )))
   }
 
   playlistLoop() {
@@ -59,6 +70,14 @@ class ShowPLaylist extends Component {
               </header>
               <div className="quiz">
                 {this.showAnswers()}
+                <div className="answers"></div>
+                {(this.state.wasSelected) ? (<button className="answers" onClick={() => {
+                  this.toggleQuiz();
+                  this.setState({
+                    currentVideo: (this.state.currentVideo + 1),
+                    playing: true
+                  });
+                }}>continue</button>) : <div className="answers" >waiting for input...</div>}
               </div>
             </div>
           </div>

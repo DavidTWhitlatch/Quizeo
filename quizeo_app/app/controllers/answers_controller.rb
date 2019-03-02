@@ -4,10 +4,12 @@ class AnswersController < ApplicationController
 
   def create
     if params[:user_id]
+      puts params[:user_id]
       @answer = Answer.find(answer_params[:id])
       @user = User.find(params[:user_id]).answers << @answer
     else
-      @answer = Quiz.find(params[:quiz_id]).answers.new(answer_params)
+      puts 'testing cats'
+      @answer = Quiz.find(params[:quiz_id]).answers << Answer.new(answer_params)
     end
     render json: { answer: @answer }
   end

@@ -32,19 +32,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: null,
-      loginModal: false,
-      registerModal: false,
-      currentUser: null,
-      playlists: [],
-      currentPlaylist: null,
-      isEditingPlaylist: true,
-      playlistTitle: '',
-      playlistImg: '',
-      currentVideoUrl: '',
-      videoOrder: 1,
-      currentQuiz: '',
       currentAnswers: [{ option: '', is_correct: false, id: null }],
+      isEditingPlaylist: true,
+      currentPlaylist: null,
+      registerModal: false,
+      currentVideoUrl: '',
+      playlistTitle: '',
+      loginModal: false,
+      currentUser: null,
+      isLoggedIn: null,
+      playlistImg: '',
+      currentQuiz: '',
+      videoOrder: 1,
+      playlists: [],
     };
     this.toggleRegisterModal = this.toggleRegisterModal.bind(this)
     this.handleAnswerChange = this.handleAnswerChange.bind(this)
@@ -60,6 +60,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.changeVideo = this.changeVideo.bind(this)
     this.addPlaylist = this.addPlaylist.bind(this)
+    this.addAnswers = this.addAnswers.bind(this)
     this.isLoggedIn = this.isLoggedIn.bind(this)
     this.setAnswers = this.setAnswers.bind(this)
     this.changeQuiz = this.changeQuiz.bind(this)
@@ -78,14 +79,14 @@ class App extends Component {
 
   resetForm() {
     this.setState({
-      currentPlaylist: null,
+      currentAnswers: [{ option: '', is_correct: false, id: null }],
       isEditingPlaylist: true,
+      currentPlaylist: null,
+      currentVideoUrl: '',
       playlistTitle: '',
       playlistImg: '',
-      currentVideoUrl: '',
-      videoOrder: 1,
       currentQuiz: '',
-      currentAnswers: [{ option: '', is_correct: false, id: null }]
+      videoOrder: 1
     })
   }
 
@@ -138,9 +139,9 @@ class App extends Component {
     playlistIndex()
       .then((data) => {
         this.setState({
-          playlists: data.playlists
+          playlists: data
         })
-        return data.playlists
+        return data
       })
       .catch(err => console.log(err))
   }
@@ -153,7 +154,6 @@ class App extends Component {
         });
         return data.playlist[0]
       })
-      .then(data => this.getQuizzes())
       .catch(err => console.log(err))
   }
 
@@ -191,29 +191,18 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-
-  getQuizzes() {
-    quizzesIndex()
-      .then(resp => this.combineData(this.state.currentPlaylist, resp.quizzes))
-      .then((data) => {
-        this.setState({
-          currentPlaylist: data
-        });
-      })
-  }
-
   addQuiz(videoId) {
     postQuiz(this.state.currentQuiz, videoId)
-      .then((data) => this.addAnwers(data.quiz.id, this.state.currentAnswers))
+      .then((data) => this.addAnswers(data.quiz.id, this.state.currentAnswers))
   }
 
   changeQuiz(quiz) {
     updateQuiz({ question: this.state.currentQuiz, id: quiz.id })
     // .then(data => console.log(data))
-      .then(data => this.changeAnwers(data.quiz.id, this.state.currentAnswers))
+      .then(data => this.changeanswers(data.quiz.id, this.state.currentAnswers))
   }
 
-  addAnwers(quiz, ansArr) {
+  addAnswers(quiz, ansArr) {
     ansArr.forEach(answer => {
       postAnswer(quiz, { option: answer.option, is_correct: answer.is_correct })
         .then(data => this.getOnePlaylist(this.state.currentPlaylist.id))
@@ -221,7 +210,7 @@ class App extends Component {
     })
   }
 
-  changeAnwers(quizID, ansArr) {
+  changeanswers(quizID, ansArr) {
     ansArr.forEach(answer => {
       debugger;
       if (answer.id) {
@@ -234,15 +223,6 @@ class App extends Component {
           .then(resp => this.getPlaylists())
       }
     })
-  }
-
-  combineData(parentArg, childArg) {
-    const videoArr = parentArg.videos.map(video => {
-      let quizzes = childArg.filter(quiz => quiz.video_id === video.id);
-      return { ...video, quizzes }
-    })
-    parentArg.videos = videoArr
-    return parentArg
   }
 
   handleChange(e) {
@@ -287,7 +267,6 @@ class App extends Component {
       }))
       .then(() => {
         let token = decode(localStorage.getItem("jwt"))
-        console.log(token)
         this.setState({
           currentUser: { username: token.username, id: token.id }
         })

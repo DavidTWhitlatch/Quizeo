@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 class Header extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class Header extends Component {
   }
 
   changeRoute = (route) => {
-    this.context.router.history.push(route);
+    this.props.history.push(route);
   }
 
   render() {
@@ -42,7 +42,7 @@ class Header extends Component {
                   (
                     <span className="navbar-item" onClick={() => this.props.toggleLoginModal()}>
                       <a className="button is-light">
-                        <span>Login</span>
+                        <span>Login/register</span>
                       </a>
                     </span>
                   )
@@ -55,8 +55,4 @@ class Header extends Component {
   }
 }
 
-Header.contextTypes = {
-  router: PropTypes.func.isRequired
-}
-
-export default Header;
+export default withRouter(Header);

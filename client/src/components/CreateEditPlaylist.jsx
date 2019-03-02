@@ -10,6 +10,7 @@ class CreateEditPlaylist extends Component {
       isEditingQuiz: null,
       addVideo: false,
       addQuiz: false,
+      quizId: null
     }
     this.changeRoute = this.changeRoute.bind(this)
     this.handleChange = this.handleChange.bind(this)
